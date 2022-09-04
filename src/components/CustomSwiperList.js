@@ -4,6 +4,8 @@ import { SwipeListView } from "react-native-swipe-list-view";
 import { useDispatch } from "react-redux";
 import { deleteBook } from "../store/actions/booksActions";
 import ListItem from "./ListItem";
+import moment from "moment";
+import "moment/locale/tr";
 
 const CustomSwiperList = ({ data, navigation }) => {
   const dispatch = useDispatch();
@@ -32,18 +34,27 @@ const CustomSwiperList = ({ data, navigation }) => {
             {!!data.dateStart && (
               <ListItem
                 label={"Başlangıc Tarihi: "}
-                item={data.dateStart.toLocaleString()}
+                item={moment(data.dateStart)
+                  .locale("tr")
+                  .startOf("seconds")
+                  .fromNow()}
               />
             )}
             {!!data.dateFinish && (
               <ListItem
                 label={"Bitis Tarihi: "}
-                item={data.dateFinish.toLocaleString()}
+                item={moment(data.dateFinish)
+                  .locale("tr")
+                  .startOf("seconds")
+                  .fromNow()}
               />
             )}
             <ListItem
               label={"Son Güncelleme:"}
-              item={data.updateDate.toLocaleString()}
+              item={moment(data.updateDate)
+                .locale("tr")
+                .startOf("seconds")
+                .fromNow()}
             />
           </View>
         </View>
