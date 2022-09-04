@@ -6,6 +6,7 @@ import Picker from "../components/Picker";
 import DateInput from "../components/DateInput";
 import { useDispatch } from "react-redux";
 import { addBook, updateBook } from "../store/actions/booksActions";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const AddNewBook = ({ route, navigation }) => {
   const dispatch = useDispatch();
@@ -72,7 +73,11 @@ const AddNewBook = ({ route, navigation }) => {
         name={!!item ? "Kitap Bilgilerini Güncelle" : "Yeni Kitap Ekle"}
         navigation={navigation}
       />
-      <View>
+      <KeyboardAwareScrollView
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
+        enableOnAndroid={true}
+      >
         <Input
           iconLeft={"book"}
           size={32}
@@ -134,7 +139,7 @@ const AddNewBook = ({ route, navigation }) => {
             {!!item ? "Kaydet" : "Ekle"}
           </Text>
         </TouchableOpacity>
-      </View>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };
