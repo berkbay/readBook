@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

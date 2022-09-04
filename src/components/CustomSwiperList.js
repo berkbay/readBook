@@ -1,11 +1,5 @@
 import React, { useCallback, useRef } from "react";
-import {
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SwipeListView } from "react-native-swipe-list-view";
 import { useDispatch } from "react-redux";
 import { deleteBook } from "../store/actions/booksActions";
@@ -15,9 +9,12 @@ const CustomSwiperList = ({ data, navigation }) => {
   const dispatch = useDispatch();
   const swipeRow = useRef();
 
-  const deleteButton = useCallback((rowMap, id) => {
-    dispatch(deleteBook(id));
-  }, []);
+  const deleteButton = useCallback(
+    (rowMap, id) => {
+      dispatch(deleteBook(id));
+    },
+    [data]
+  );
 
   const updateButton = (item) => {
     navigation.navigate("AddNewBook", { item: item });
@@ -68,7 +65,9 @@ const CustomSwiperList = ({ data, navigation }) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.backRightBtn, styles.backRightBtnRight]}
-          onPress={() => deleteButton(rowMap, item.id)}
+          onPress={() => {
+            deleteButton(rowMap, item.id);
+          }}
         >
           <Text style={styles.backTextColor}>Sil</Text>
         </TouchableOpacity>
@@ -113,10 +112,10 @@ const styles = StyleSheet.create({
   },
   backRightBtn: {
     alignItems: "center",
-    bottom: 20,
+    bottom: 40,
     justifyContent: "center",
     position: "absolute",
-    top: 20,
+    top: 10,
     width: 75,
   },
   backRightBtnLeft: {

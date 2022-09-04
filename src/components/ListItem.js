@@ -9,11 +9,12 @@ const ListItem = ({ label, item }) => {
           fontWeight: "700",
           fontSize: 16,
           textDecorationLine: "underline",
+          flex: 1,
         }}
       >
         {label}
       </Text>
-      <Text style={{ fontWeight: "500", fontSize: 16 }}>{item}</Text>
+      <Text style={{ fontWeight: "500", fontSize: 14, flex: 1 }}>{item}</Text>
     </View>
   );
 };

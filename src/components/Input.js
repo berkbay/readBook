@@ -8,11 +8,8 @@ import {
   Easing,
   TouchableWithoutFeedback,
   Dimensions,
-  TouchableOpacity,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-
-const { width, height } = Dimensions.get("window");
 
 const TextField = (props) => {
   const {

@@ -1,17 +1,8 @@
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  SafeAreaView,
-  Platform,
-  Button,
-} from "react-native";
+import { Text, View, TouchableOpacity, SafeAreaView } from "react-native";
 import CustomHeader from "../components/CustomHeader";
-import AddBookButton from "../components/AddBookButton";
 import Input from "../components/Input";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Picker from "../components/Picker";
-import DateTimePicker from "@react-native-community/datetimepicker";
 import DateInput from "../components/DateInput";
 import { useDispatch } from "react-redux";
 import { addBook, updateBook } from "../store/actions/booksActions";
@@ -116,10 +107,12 @@ const AddNewBook = ({ route, navigation }) => {
         />
         <Picker setValue={setCategory} value={category} />
         <TouchableOpacity
-          light={!name || !writerName || !category ? true : false}
-          disabled={!name || !writerName || !category ? true : false}
           onPress={() => {
-            !!item ? changeBook(itemId) : AddBook();
+            if (!name || !writerName || !category) {
+              alert("Lütfen zorunlu alanlarını doldurunuz");
+            } else {
+              !!item ? changeBook(itemId) : AddBook();
+            }
           }}
           style={{
             alignItems: "center",

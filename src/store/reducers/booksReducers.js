@@ -15,14 +15,6 @@ export const booksReducers = (state = initialState, action) => {
           },
         ],
       };
-    case "DELETE_BOOK":
-      const newList = state.list.filter(
-        (item) => item.id !== action.payload.id
-      );
-      return {
-        ...state,
-        list: newList,
-      };
     case "UPDATE_BOOK":
       const changeList = state.list.map((item) => {
         if (item.id === action.payload.id.itemId) {
@@ -34,6 +26,13 @@ export const booksReducers = (state = initialState, action) => {
         ...state,
         list: changeList,
       };
+    case "DELETE_BOOK":
+      const newList = state.list.filter((item) => item.id !== action.payload);
+      return {
+        ...state,
+        list: newList,
+      };
+
     default:
       return state;
   }
